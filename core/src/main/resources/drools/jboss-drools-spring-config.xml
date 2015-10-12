@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+        >
+
+    <bean id="sessionManager" class="com.bnsf.drools.poc.jboss.drools.session.DroolsSessionManager">
+        <property name="sessionProducer" ref="sessionProducer"/>
+        <property name="startSessionOnInitialization" value="true"/>
+    </bean>
+
+    <bean id="sessionProducer" class="com.bnsf.drools.poc.jboss.drools.session.DroolsSessionProducer">
+        <property name="locomotiveInventoryCacheRepository" ref="locomotiveInventoryCacheRepository"/>
+        <property name="trainCacheRepository" ref="trainCacheRepository"/>
+        <property name="confidenceLevelChangeEventChannel" ref="confidenceLevelChangeEventChannel"/>
+    </bean>
+
+    <bean id="trackingAgendaEventListener" class="com.bnsf.drools.poc.jboss.drools.util.TrackingAgendaEventListener"/>
+
+    <bean id="confidenceLevelChangeEventChannel" class="com.bnsf.drools.poc.channel.ConfidenceLevelChangeEventChannel">
+        <property name="camelTemplate" ref="camelTemplate"/>
+    </bean>
+
+</beans>

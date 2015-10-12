@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+        >
+
+    <bean id="cacheManager" class="com.bnsf.drools.poc.jboss.cache.DataGridCacheManager"/>
+
+    <bean id="trainCache" factory-bean="cacheManager" factory-method="getCache">
+        <constructor-arg value="TrainCache" />
+    </bean>
+
+    <bean id="locomotiveInventoryCache" factory-bean="cacheManager" factory-method="getCache">
+        <constructor-arg value="LocomotiveInventoryCache" />
+    </bean>
+
+    <bean id="locomotiveInventoryCacheRepository" class="com.bnsf.drools.poc.cache.repo.LocomotiveInventoryCacheRepository">
+        <constructor-arg ref="locomotiveInventoryCache" />
+    </bean>
+    <bean id="trainCacheRepository" class="com.bnsf.drools.poc.cache.repo.TrainCacheRepository">
+        <constructor-arg ref="trainCache" />
+    </bean>
+
+</beans>

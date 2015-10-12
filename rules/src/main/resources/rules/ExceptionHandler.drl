@@ -1,0 +1,19 @@
+package com.bnsf.drools.poc.harvest
+
+import com.bnsf.drools.poc.exception.CustomException;
+import com.bnsf.drools.poc.model.SampleModel;
+
+//global variables
+global org.slf4j.Logger logger
+
+dialect "java"
+ 
+rule "ExceptionHandlerRule"
+    when
+       $s : SampleModel( )
+    then
+    	if(true)
+    	    throw new CustomException("sample error");
+end
+
+

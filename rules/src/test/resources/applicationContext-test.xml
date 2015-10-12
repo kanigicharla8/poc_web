@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
+        >
+
+    <import resource="classpath:cache/jboss-cache-spring-config.xml" />
+    <import resource="classpath:drools/jboss-drools-spring-config-test.xml" />
+
+    <import resource="classpath:fuse/jboss-fuse-config-test.xml" />
+
+    <bean id="springUtil" class="com.bnsf.drools.poc.util.SpringUtil"/>
+
+</beans>
+
